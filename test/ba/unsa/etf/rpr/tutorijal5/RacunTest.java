@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.tutorijal5;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +15,7 @@ class RacunTest {
         k.dodajRacun(r);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void izvrsiUplatu() {
         r.izvrsiUplatu(100.0);
         assertEquals(100.0, r.getStanjeRacuna());
@@ -22,25 +23,28 @@ class RacunTest {
         assertEquals(150.0, r.getStanjeRacuna());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void izvrsiIsplatu() {
         assertFalse(r.izvrsiIsplatu(100.0));
         r.izvrsiUplatu(100.0);
         assertTrue(r.izvrsiIsplatu(50.0));
         assertEquals(50.0, r.getStanjeRacuna());
+        assertTrue(r.izvrsiIsplatu(500.0)); //stanje racuna je 100, prekoracenje 100, test pada
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void odobriPrekoracenje() {
         r.odobriPrekoracenje(100.0);
         assertTrue(r.izvrsiIsplatu(100.0));
         assertEquals(-100.0, r.getStanjeRacuna());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void provjeriOdobrenjePrekoracenja() {
         r.odobriPrekoracenje(100.0);
         assertTrue(r.provjeriOdobrenjePrekoracenja(50.0));
         assertTrue(r.provjeriOdobrenjePrekoracenja(100.0));
+        assertTrue(r.provjeriOdobrenjePrekoracenja(101.0)); //test za veci unos od prekoracenja u tom slucaju pada
     }
+
 }

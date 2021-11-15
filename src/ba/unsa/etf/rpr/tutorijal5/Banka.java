@@ -7,10 +7,12 @@ public class Banka {
     private static Long brojRacuna = 1000000000000000L;
     private List<Uposlenik> uposleni;
     private List<Korisnik> korisnici;
+    private List<Racun> racun_korisnici;
 
     public Banka() {
         uposleni = new ArrayList<>();
         korisnici = new ArrayList<>();
+        racun_korisnici = new ArrayList<>();
     }
 
     public List<Uposlenik> getUposleni() {
@@ -31,5 +33,11 @@ public class Banka {
         Uposlenik u = new Uposlenik(ime, prezime);
         uposleni.add(u);
         return u;
+    }
+    public Racun kreirajRacunZaKorisnika(Korisnik k) { //priprema
+        Racun rk = new Racun(brojRacuna, k);
+        racun_korisnici.add(rk);
+        return rk;
+
     }
 }

@@ -4,13 +4,13 @@ public class Racun {
     private final Long brojRacuna;
     private final Osoba korisnikRacuna;
     private Double stanjeRacuna;
-    private boolean odobrenjePrekoracenja;
+    private Double odobrenjePrekoracenja;
 
     public Racun(Long brojRacuna, Osoba korisnikRacuna) {
         this.brojRacuna = brojRacuna;
         this.korisnikRacuna = korisnikRacuna;
         this.stanjeRacuna = 0d;
-        this.odobrenjePrekoracenja = false;
+        this.odobrenjePrekoracenja = 0d;
     }
 
     public boolean izvrsiUplatu(Double iznos) {
@@ -25,14 +25,16 @@ public class Racun {
         return true;
     }
 
-    public void odobriPrekoracenje(Double iznos) {
+    public void odobriPrekoracenje(Double iznos) { //zad1
         // U budućnosti se može dodati iznos odobrenog prekoračenja
-        odobrenjePrekoracenja=true;
+        odobrenjePrekoracenja = 100d;
     }
 
-    public boolean provjeriOdobrenjePrekoracenja(Double iznos) {
+    public boolean provjeriOdobrenjePrekoracenja(Double iznos) { //zad1
         // U budućnosti se može dodati iznos prekoračenja
-        return odobrenjePrekoracenja;
+        if (iznos - stanjeRacuna <= odobrenjePrekoracenja)
+            return true;
+        else return false;
     }
 
     public Double getStanjeRacuna() {
